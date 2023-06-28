@@ -2,7 +2,7 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
-  "homepage":"https://vkhydras.github.io/React-TicTacToe-Evarest",
+  "homepage": "https://vkhydras.github.io/React-TicTacToe-Evarest",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
