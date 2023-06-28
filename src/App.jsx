@@ -43,6 +43,7 @@ function App() {
     setCells((prevCells) => {
       return prevCells.map((cell) => {
         if (cell.id === id && !cell.clicked && win===false) {
+          setXturn(prev=>!prev)
           return {
             ...cell,
             value:Xturn?"X":"O",
@@ -57,7 +58,7 @@ function App() {
         options[id] = Xturn?"X":"O"
      }
     }
-    setXturn(prev=>!prev)
+    
    
     if(!options.includes(null) && !win){
       setDraw(true)
@@ -74,6 +75,7 @@ function App() {
       if ( options[a] && (options[a] == options[b] && options[a] == options[c])){
         setWin(true)
         setGameOver(true)
+        setWinner(options[a]);
          console.log('there is a win' )
       }
    } 
@@ -91,7 +93,7 @@ function App() {
 
   return (
     <div>
-      <TurnIndicator turn={Xturn} win={win} draw={draw} winnerr={winner} gameOver={gameOver}/>
+      <TurnIndicator turn={Xturn} win={win} draw={draw} winner={winner} gameOver={gameOver}/>
       <div className="board">
         {boxes}
       </div>
