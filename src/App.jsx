@@ -8,13 +8,18 @@ import Cells from "./components/Cells";
 
 function App() {
   const [cells,setCells] = useState(createCells)
+  const [turn,setTurn] = useState("X")
   const [options,setOptions] = useState(createOptions)
   const [gameOver,setGameOver] = useState(false)
   const [Xturn,setXturn] = useState(true)
+  const winningCombo = [
+    [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
+ ]
   
 
   function createCells(){
     const cellsArray = []
+    
     for (let i = 0;i < 9;i++){
       cellsArray.push({
         value:"",
@@ -32,31 +37,22 @@ function App() {
     }
     return options
   }
-  function cellClick(e) {
-    let id = e.target.id
-    // setCells((prevCells) => {
-    //   const updatedCells = prevCells.map((cell) => {
-    //     if (cell.id === id && !cell.clicked) {
-    //       return {
-    //         ...cell,
-    //         value: "x",
-    //         clicked: true
-    //       };
-    //     }
-    //     return cell;
-    //   });
-    //   return updatedCells;
-    // });
-    setCells(prev=>prev.map(cell=>{
-      return cell.id === id && !cell.clicked ?{
-        ...cell,
-        value:"X",
-        clicked:true}
-        :cell
-    }))
-    console.log(id +"clicked")
-    console.log(id +cells.value)
+  function cellClick(id) {
+    setCells((prevCells) => {
+      return prevCells.map((cell) => {
+        if (cell.id === id && !cell.clicked) {
+          return {
+            ...cell,
+            value:Xturn?"X":"O",
+            clicked: true
+          };
+        }
+        return cell;
+      });
+    });
+    setXturn(prev=>!prev)
   }
+
     const boxes = cells.map(cellInfo => <Cells
       key={nanoid()} 
       value={cellInfo.value} 
@@ -68,7 +64,7 @@ function App() {
 
   return (
     <div>
-      <TurnIndicator  />
+      <TurnIndicator turn={Xturn} />
       <div className="board">
         {boxes}
       </div>

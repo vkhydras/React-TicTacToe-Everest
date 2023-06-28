@@ -6,7 +6,7 @@ function Cells(props) {
         <div 
         className="cell" 
         id={props.id} 
-        onClick={props.cellClick}
+        onClick = {() => props.cellClick(props.id)}
         >
           {props.value}
           </div>
