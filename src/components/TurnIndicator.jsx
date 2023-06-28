@@ -8,14 +8,16 @@ function TurnIndicator(props) {
     backgroundColor:!props.turn && !props.gameOver &&"#FF2E63"
   }
   
-  let player =props.turn ? "O ":"X "
+  
+  
+
   
 
   return (
     < div className="turnIndicator">
       {!props.win && !props.draw ?<div id="turn">{props.turn ? "X":"O"}'S TURN</div>
       :<div id="turn">
-         {props.win && <span>{player}</span>}
+         {props.win && <span>{props.gameOver ? props.winner +" ":""}</span>}
          {props.draw &&!props.win ? "DRAW":"WIN"}
          </div>}
       <div className="turnContainer">
