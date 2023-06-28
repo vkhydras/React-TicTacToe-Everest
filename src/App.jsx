@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import {nanoid} from 'nanoid'
+import Confetti from "react-confetti";
+import clickSound from "./components/audio/click.mp3"
+import winAudio from "./components/audio/tadaa.mp3"
 import TurnIndicator from "./components/TurnIndicator";
 import RstButton from "./components/RstButton";
 import Cells from "./components/Cells";
@@ -14,9 +17,14 @@ function App() {
   const [win,setWin] = useState(false)
   const [draw,setDraw] = useState(false)
   const [winner, setWinner] = useState("");
+  const [winningCells, setWinningCells] = useState('')
   const winningCombo = [
     [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]
  ]
+ if(win){
+  new Audio(winAudio).play()
+ }
+ 
   
 
   function createCells(){
@@ -40,6 +48,7 @@ function App() {
     return options
   }
   function cellClick(id) {
+    new Audio(clickSound).play()   
     setCells((prevCells) => {
       return prevCells.map((cell) => {
         if (cell.id === id && !cell.clicked && win===false) {
@@ -76,10 +85,26 @@ function App() {
         setWin(true)
         setGameOver(true)
         setWinner(options[a]);
-         console.log('there is a win' )
+        setWinningCells([a,b,c])
+
       }
    } 
-   
+  
+  }
+
+  function restart(){
+    new Audio(clickSound).play()
+    setOptions(prev =>prev.fill(null))
+    setGameOver(false)
+    setDraw(false)
+    setWin(false)
+    setWinningCells("")
+    setCells(prev => prev.map(cell =>({
+      ...cell,
+      value:"",
+      clicked:false
+    })))
+    setXturn(true)
   }
 
     const boxes = cells.map(cellInfo => <Cells
@@ -88,17 +113,20 @@ function App() {
       id = {cellInfo.id} 
       clicked = {cellInfo.clicked} 
       cellClick ={cellClick}
+      winner={winner}
+      winningCells = {winningCells}
       />
     )
 
   return (
-    <div>
+    <div className="boardBody">
       <TurnIndicator turn={Xturn} win={win} draw={draw} winner={winner} gameOver={gameOver}/>
       <div className="board">
         {boxes}
       </div>
-      {gameOver && <RstButton />}
-
+      {gameOver && <RstButton restart={restart}/>}
+      {win && <Confetti/>}
+      
     </div>
   );
 }
