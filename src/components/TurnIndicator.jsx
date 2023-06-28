@@ -7,18 +7,13 @@ function TurnIndicator(props) {
   const styles1 ={
     backgroundColor:!props.turn && !props.gameOver &&"#FF2E63"
   }
-  
-  
-  
-
-  
 
   return (
     < div className="turnIndicator">
       {!props.win && !props.draw ?<div id="turn">{props.turn ? "X":"O"}'S TURN</div>
-      :<div id="turn">
-         {props.win && <span>{props.gameOver ? props.winner +" ":""}</span>}
-         {props.draw &&!props.win ? "DRAW":"WIN"}
+      :<div id="turn" className={props.win &&"winning-message"}>
+         {props.win && <span>{props.gameOver ? "😀"+props.winner +" ":""}</span>}
+         {props.draw &&!props.win ? "😥 DRAW":"WON"}
          </div>}
       <div className="turnContainer">
         <div id="X" className="turnBox" style={styles}>X</div>
