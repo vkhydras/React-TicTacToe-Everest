@@ -5,6 +5,7 @@ import clickSound from "./components/audio/click.mp3"
 import winAudio from "./components/audio/tadaa.mp3"
 import TurnIndicator from "./components/TurnIndicator";
 import RstButton from "./components/RstButton";
+import ExitBtn from "./components/ExitButton";
 import Cells from "./components/Cells";
 
 
@@ -107,6 +108,10 @@ function App() {
     setXturn(true)
   }
 
+  function exit() {
+    window.close()
+  }
+
     const boxes = cells.map(cellInfo => <Cells
       key={nanoid()} 
       value={cellInfo.value} 
@@ -124,7 +129,10 @@ function App() {
       <div className="board">
         {boxes}
       </div>
-      {gameOver && <RstButton restart={restart}/>}
+      <div>
+        <RstButton restart={restart} gameOver={gameOver}/>
+        <ExitBtn exit={exit}/>
+      </div>
       {win && <Confetti/>}
       
     </div>
