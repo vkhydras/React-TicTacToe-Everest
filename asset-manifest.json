@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-TicTacToe-Evarest/static/css/main.fc8cec20.css",
+    "main.js": "/React-TicTacToe-Evarest/static/js/main.bc285640.js",
+    "static/media/tadaa.mp3": "/React-TicTacToe-Evarest/static/media/tadaa.68cf7a00d543874aa095.mp3",
+    "static/media/click.mp3": "/React-TicTacToe-Evarest/static/media/click.b070217cc3ec9826fd89.mp3",
+    "index.html": "/React-TicTacToe-Evarest/index.html",
+    "main.fc8cec20.css.map": "/React-TicTacToe-Evarest/static/css/main.fc8cec20.css.map",
+    "main.bc285640.js.map": "/React-TicTacToe-Evarest/static/js/main.bc285640.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc8cec20.css",
+    "static/js/main.bc285640.js"
+  ]
+}
