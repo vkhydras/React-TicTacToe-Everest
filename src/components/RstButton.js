@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function RstButton(props) {
+export default function RstButton(props) {
   const marginRight = {
     margin: "8px"
   }
@@ -12,4 +12,3 @@ function RstButton(props) {
   );
 }
 
-export default RstButton;
